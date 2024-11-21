@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+// const path = require('path');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -13,6 +14,8 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// app.use(express.static(path.join(__dirname, "../rps-frontend//dist")));
 
 app.use('/api/game', gameRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
@@ -46,6 +49,10 @@ io.on('connection', (socket) => {
         console.log('A user disconnected:', socket.id);
     });
 });
+
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "../rps-frontend/dist/index.html"));
+// })
 
 console.log('Mongo URI:', process.env.MONGO_URI);
 

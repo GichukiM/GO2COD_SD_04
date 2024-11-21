@@ -8,6 +8,11 @@ const LeaderboardSchema = new mongoose.Schema({
     wins: {
         type: Number,
         default: 0,
+    },
+    gameId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Game',
+        required: true,
     }
 });
 
